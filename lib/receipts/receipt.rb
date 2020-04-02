@@ -51,9 +51,9 @@ module Receipts
         logo_path = company.fetch(:logo, '')
 
         if logo_path.empty?
-          move_down 32
+          move_down 80
         else
-          image open(logo_path), height: 32
+          image open(logo_path), height: 80
         end
 
         move_down 8
