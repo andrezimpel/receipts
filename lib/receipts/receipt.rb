@@ -29,6 +29,10 @@ module Receipts
       def default_subheading
         "RECEIPT FOR CHARGE #%{id}"
       end
+    
+      def default_logo_size
+        32
+      end
 
       def setup_fonts
         font_families.update "Primary" => custom_font
@@ -46,14 +50,15 @@ module Receipts
       end
 
       def header
+        logo_size = company.fetch(:logo_size, default_logo_size)
         move_down 60
 
         logo_path = company.fetch(:logo, '')
 
         if logo_path.empty?
-          move_down 80
+          move_down logo_size
         else
-          image open(logo_path), height: 80
+          image open(logo_path), height: logo_size
         end
 
         move_down 8
