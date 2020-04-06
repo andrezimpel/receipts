@@ -12,6 +12,7 @@ module Receipts
       @line_items  = attributes.fetch(:line_items)
       @custom_font = attributes.fetch(:font, {})
       @message     = attributes.fetch(:message) { default_message }
+      @footer_message     = attributes.fetch(:message) { "default footer message" }
       @subheading  = attributes.fetch(:subheading) { default_subheading }
 
       super(margin: 0)
@@ -84,6 +85,8 @@ module Receipts
         move_down 45
         text company.fetch(:name), inline_format: true
         text "<color rgb='888888'>#{company.fetch(:address)}</color>", inline_format: true
+        
+        text footer_message, inline_format: true, size: 12.5, leading: 4
       end
   end
 end
