@@ -95,8 +95,8 @@ module Receipts
         borders = line_items.length - 2
 
         if !footer_columns.empty?
-          table(footer_columns, cell_style: { border_color: 'cccccc', inline_format: true }) do
-            cells.padding = 12
+          table(footer_columns, cell_style: { border_color: 'ffffff', inline_format: true }) do
+            cells.padding = 0
             cells.borders = []
             row(0..borders).borders = [:bottom]
           end
