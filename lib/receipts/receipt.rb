@@ -91,7 +91,7 @@ module Receipts
         text "<color rgb='888888'>#{company.fetch(:address)}</color>", inline_format: true
         
         move_down 30
-        font_size 8
+        font_size 7
         borders = line_items.length - 2
 
         if !footer_columns.empty?
