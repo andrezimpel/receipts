@@ -90,7 +90,7 @@ module Receipts
         text company.fetch(:name), inline_format: true
         text "<color rgb='888888'>#{company.fetch(:address)}</color>", inline_format: true
         
-        move_down 30
+        move_down 50
         font_size 7
         borders = line_items.length - 2
 
