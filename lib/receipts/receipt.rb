@@ -3,7 +3,7 @@ require 'prawn/table'
 
 module Receipts
   class Receipt < Prawn::Document
-    attr_reader :attributes, :id, :company, :custom_font, :line_items, :logo, :message, :product, :subheading
+    attr_reader :attributes, :id, :company, :custom_font, :line_items, :logo, :message, :product, :subheading, :footer_message
 
     def initialize(attributes)
       @attributes  = attributes
@@ -12,7 +12,7 @@ module Receipts
       @line_items  = attributes.fetch(:line_items)
       @custom_font = attributes.fetch(:font, {})
       @message     = attributes.fetch(:message) { default_message }
-      @footer_message     = attributes.fetch(:message) { "default footer message" }
+      @footer_message     = attributes.fetch(:footer_message) { default_footer_message }
       @subheading  = attributes.fetch(:subheading) { default_subheading }
 
       super(margin: 0)
@@ -28,6 +28,10 @@ module Receipts
       end
 
       def default_subheading
+        "RECEIPT FOR CHARGE #%{id}"
+      end
+    
+      def default_footer_message
         "RECEIPT FOR CHARGE #%{id}"
       end
     
@@ -86,7 +90,7 @@ module Receipts
         text company.fetch(:name), inline_format: true
         text "<color rgb='888888'>#{company.fetch(:address)}</color>", inline_format: true
         
-        text @footer_message, inline_format: true, size: 12.5, leading: 4
+        text footer_message, inline_format: true, size: 12.5, leading: 4
       end
   end
 end
